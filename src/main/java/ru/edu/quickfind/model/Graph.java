@@ -69,6 +69,10 @@ public class Graph {
         return leafs;
     }
 
+    public int[] getNodes() {
+        return nodes;
+    }
+
     @Override
     public String toString() {
         return "Graph{" +

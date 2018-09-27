@@ -32,6 +32,9 @@ package ru.edu.quickfind;
 
 import ru.edu.quickfind.model.Graph;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 /**
  * The {@code DepthFirstPaths} class represents a data type for finding
  * paths from a source vertex <em>s</em> to every other vertex
@@ -65,6 +68,40 @@ public class DepthFirstPaths {
 
     // depth first search from v
     private static int dfs(Graph graph, int v) {
+        int visitedVertices = 1;
+        marked[v] = true;
+        for (Integer id : graph.getNeighborsFor(v)) {
+            if (!marked[id]) {
+                visitedVertices += dfs(graph, id);
+            }
+        }
+        return visitedVertices;
+    }
+
+    private static int bfs(Graph graph, int v) {
+        int[] distance = new int[graph.getSize() + 1];
+        Arrays.fill(distance, -1);
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        queue.push(v);
+        distance[v] = 0;
+
+        while (!queue.isEmpty()) {
+            Integer t = queue.poll();
+            //  loop for all adjacent nodes of node-t
+            for (Integer integer : graph.getNeighborsFor(t)) {
+                int v = *it;
+
+                // push node into queue only if
+                // it is not visited already
+                if (distance[i] == -1) {
+                    queue.push(i);
+                    // make distance of v, one more
+                    // than distance of t
+                    distance[i] = distance[t] + 1;
+                }
+            }
+        }
+
         int visitedVertices = 1;
         marked[v] = true;
         for (Integer id : graph.getNeighborsFor(v)) {
