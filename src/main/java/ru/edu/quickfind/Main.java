@@ -9,13 +9,18 @@ public class Main {
     }
 
     private static void init() {
-        Graph graph = example();
+//        Graph graph = example();
+        Graph graph = test3();
 
         int checkConnection = DepthFirstPaths.countConnectedNodes(graph, 1);
         System.out.println(checkConnection);
         boolean b = checkConnection == graph.getSize();
         System.out.println("is connected: " + b);
+        int maxLengthFor = DepthFirstPaths.maxLengthFor(graph, 1);
+        System.out.println("Max length for = " + maxLengthFor);
         System.out.println(graph.getLeafsId());
+
+        System.out.println("Max length in graph = " + DepthFirstPaths.maxLengthInGraph(graph));
     }
 
     private static Graph example() {

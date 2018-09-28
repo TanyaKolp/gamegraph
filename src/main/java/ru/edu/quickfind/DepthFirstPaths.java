@@ -43,9 +43,6 @@ import java.util.LinkedList;
  * This implementation uses depth-first search.
  * The constructor takes time proportional to <em>V</em> + <em>E</em>,
  * where <em>V</em> is the number of vertices and <em>E</em> is the number of edges.
- * Each call to {@link #hasPathTo(int)} takes constant time;
- * each call to {@link #pathTo(int)} takes time proportional to the length
- * of the path.
  * It uses extra space (not including the graph) proportional to <em>V</em>.
  * <p>
  * For additional documentation, see <a href="https://algs4.cs.princeton.edu/41graph">Section 4.1</a>
@@ -78,7 +75,16 @@ public class DepthFirstPaths {
         return visitedVertices;
     }
 
-    private static int bfs(Graph graph, int v) {
+    public static int maxLengthInGraph(Graph graph) {
+        BfsResult firstTry = bfs(graph, 1);
+        return bfs(graph, firstTry.getForNode()).getMax();
+    }
+
+    public static int maxLengthFor(Graph graph, int v) {
+        return bfs(graph, v).getMax();
+    }
+
+    private static BfsResult bfs(Graph graph, int v) {
         int[] distance = new int[graph.getSize() + 1];
         Arrays.fill(distance, -1);
         LinkedList<Integer> queue = new LinkedList<Integer>();
@@ -88,29 +94,34 @@ public class DepthFirstPaths {
         while (!queue.isEmpty()) {
             Integer t = queue.poll();
             //  loop for all adjacent nodes of node-t
-            for (Integer integer : graph.getNeighborsFor(t)) {
-                int v = *it;
+            for (Integer s : graph.getNeighborsFor(t)) {
 
                 // push node into queue only if
                 // it is not visited already
-                if (distance[i] == -1) {
-                    queue.push(i);
-                    // make distance of v, one more
+                if (distance[s] == -1) {
+                    queue.push(s);
+                    // make distance of s, one more
                     // than distance of t
-                    distance[i] = distance[t] + 1;
+                    distance[s] = distance[t] + graph.getTransTimeFor(s, t);
                 }
             }
         }
-
-        int visitedVertices = 1;
-        marked[v] = true;
-        for (Integer id : graph.getNeighborsFor(v)) {
-            if (!marked[id]) {
-                visitedVertices += dfs(graph, id);
-            }
-        }
-        return visitedVertices;
+        return findMaxLenght(distance);
     }
+
+    private static BfsResult findMaxLenght(int[] distance) {
+        int forNode = 0;
+        Integer max = null;
+        for (int i = 0, n = distance.length; i < n; ++i) {
+            int value = distance[i];
+            if (max != null && value <= max)
+                continue;
+            max = value;
+            forNode = i;
+        }
+        return new BfsResult(max, forNode);
+    }
+
 
     /**
      * Is there a path between the source vertex {@code s} and vertex {@code v}?
@@ -131,3 +142,4 @@ public class DepthFirstPaths {
             throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 }
+

@@ -1,6 +1,7 @@
 package ru.edu.quickfind.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -57,6 +58,13 @@ public class Graph {
             }
         }
         return leafs;
+    }
+
+    public Integer getTransTimeFor(Integer firstNode, Integer secondNode) {
+        List<Integer> connectedNodes = Arrays.asList(firstNode, secondNode);
+        return cables.stream().filter(cable -> connectedNodes.contains(cable.getFirstNodeId())
+                && connectedNodes.contains(cable.getSecondNodeId())).findFirst()
+                .map(Cable::getTransTime).orElse(null);
     }
 
     public List<Integer> getNodesWithNCables(int nCables) {
