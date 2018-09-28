@@ -98,7 +98,6 @@ public class DepthFirstPaths {
             Integer t = queue.poll();
             //  loop for all adjacent nodes of node-t
             for (Integer s : graph.getNeighborsFor(t)) {
-
                 // push node into queue only if
                 // it is not visited already
                 if (distance[s] == -1) {
@@ -109,10 +108,10 @@ public class DepthFirstPaths {
                 }
             }
         }
-        return findMaxLenght(distance);
+        return findMaxLength(distance);
     }
 
-    private static BfsResult findMaxLenght(int[] distance) {
+    private static BfsResult findMaxLength(int[] distance) {
         int forNode = 0;
         Integer max = null;
         for (int i = 0, n = distance.length; i < n; ++i) {

@@ -9,8 +9,8 @@ public class Main {
     }
 
     private static void init() {
-//        Graph graph = example();
-        Graph graph = test3();
+        Graph graph = example();
+//        Graph graph = test3();
 
         int checkConnection = DepthFirstPaths.countConnectedNodes(graph, 1);
         System.out.println(checkConnection);
