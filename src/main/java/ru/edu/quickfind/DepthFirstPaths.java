@@ -79,6 +79,7 @@ public class DepthFirstPaths {
         // first bfs to find one end point of
         // longest path
         BfsResult firstTry = bfs(graph, 1);
+        System.out.println("first try; " + firstTry);
         //  second bfs to find actual longest path
         return bfs(graph, firstTry.getForNode()).getMax();
     }

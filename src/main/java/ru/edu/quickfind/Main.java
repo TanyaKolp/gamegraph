@@ -16,7 +16,7 @@ public class Main {
         System.out.println(checkConnection);
         boolean b = checkConnection == graph.getSize();
         System.out.println("is connected: " + b);
-        int maxLengthFor = DepthFirstPaths.maxLengthFor(graph, 1);
+        int maxLengthFor = DepthFirstPaths.maxLengthFor(graph, 6);
         System.out.println("Max length for = " + maxLengthFor);
         System.out.println(graph.getLeafsId());
 

@@ -16,4 +16,12 @@ public class BfsResult {
     public Integer getForNode() {
         return forNode;
     }
+
+    @Override
+    public String toString() {
+        return "BfsResult{" +
+                "max=" + max +
+                ", forNode=" + forNode +
+                '}';
+    }
 }
