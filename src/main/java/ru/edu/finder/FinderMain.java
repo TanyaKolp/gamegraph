@@ -1,17 +1,16 @@
 package ru.edu.finder;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class FinderMain {
     public static void main(String[] args) {
         MaxFinder maxFinder = new MaxFinder();
-        List<Integer[]> objects = maxFinder.find();
+        Integer[] objects = maxFinder.find();
 
         System.out.println("**** res ****");
-        for (Integer[] object : objects) {
-            System.out.println(Arrays.toString(object));
-        }
+        System.out.println("Result combination = "+ Arrays.toString(objects));
+        System.out.println("Answer: " + Arrays.stream(objects).mapToInt(i->i).sum()/2);
+
 
     }
 }
