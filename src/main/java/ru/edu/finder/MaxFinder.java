@@ -15,8 +15,9 @@ public class MaxFinder {
 //        case8();
 //        case248();
         case239();
+//        case6();
+//        crashCase6();
     }
-
 
     private void case22() {
         array = new Integer[]{4, 10, 4, 22, 18};
@@ -42,13 +43,25 @@ public class MaxFinder {
         array = new Integer[]{2, 3, 4, 1, 6};
     }
 
+    private void crashCase6() {
+        array = new Integer[]{22, 4, 6, 2};
+    }
 
     public Integer[] find() {
         this.sum = Arrays.stream(array).mapToInt(Integer::intValue).sum();
         System.out.println("sum = " + sum);
-        Arrays.sort(array, Collections.reverseOrder());
-        System.out.println("***  sort  **** ");
-        System.out.println(Arrays.toString(array));
+        Arrays.sort(this.array, Collections.reverseOrder());
+        System.out.println("Do magic for **********************\n" + Arrays.toString(array));
+        Integer[] result = doMagic(this.array);
+        if (result.length == 0) {
+            Arrays.sort(this.array);
+            System.out.println("\n Do magic again **********************\n" + Arrays.toString(array));
+            result = doMagic(this.array);
+        }
+        return result;
+    }
+
+    private Integer[] doMagic(Integer[] array) {
         int[] deletedList = new int[array.length];
         deletedList[array.length - 1] = array[array.length - 1];
         Integer[] resArray = Arrays.copyOf(array, array.length);
