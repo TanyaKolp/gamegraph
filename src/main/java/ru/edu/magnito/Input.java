@@ -1,5 +1,7 @@
 package ru.edu.magnito;
 
+import java.util.Arrays;
+
 public class Input {
     /**
      * '*' - 0
@@ -53,5 +55,15 @@ public class Input {
 
     public void setCostForUsingDevice(int costForUsingDevice) {
         this.costForUsingDevice = costForUsingDevice;
+    }
+
+    @Override
+    public String toString() {
+        return "Input{" +
+                "recordingTrack=" + Arrays.toString(recordingTrack) +
+                ", length=" + length +
+                ", productionCost=" + productionCost +
+                ", costForUsingDevice=" + costForUsingDevice +
+                '}';
     }
 }
