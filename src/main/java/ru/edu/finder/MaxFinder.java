@@ -14,9 +14,10 @@ public class MaxFinder {
 //        case0();
 //        case8();
 //        case248();
-        case239();
+//        case239();
 //        case6();
 //        crashCase6();
+        crashCase6sec();
     }
 
     private void case22() {
@@ -45,6 +46,10 @@ public class MaxFinder {
 
     private void crashCase6() {
         array = new Integer[]{22, 4, 6, 2};
+    }
+
+    private void crashCase6sec() {
+        array = new Integer[]{11, 3, 4, 6, 2};
     }
 
     public Integer[] find() {

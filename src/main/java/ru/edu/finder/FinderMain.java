@@ -10,7 +10,5 @@ public class FinderMain {
         System.out.println("**** res ****");
         System.out.println("Result combination = "+ Arrays.toString(objects));
         System.out.println("Answer: " + Arrays.stream(objects).mapToInt(i->i).sum()/2);
-
-
     }
 }
